@@ -15,14 +15,10 @@ export default function App() {
     const alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
     const [sortedWord, setsortedWord] = useState([])
     const [hiddenWord, sethiddenWord] = useState([])
-    //const [hiddenWordatt, sethiddenWordatt] = useState([])
-
-    /*     function Letter(props) {
-            return (
-                <button >{props.theletter}</button>
-            )
-        } */
-
+    const [hiddenWordatt, sethiddenWordatt] = useState([])
+    const [errorsNumber, seterrorsNumber] = useState(0)
+    const [attempt, setAttempt] = useState("")
+    const [attemptSuccessfull, setAttemptSuccessfull] = useState(false)
 
     function comparador() {
         return Math.random() - 0.5;
@@ -42,52 +38,52 @@ export default function App() {
 
     }
 
+    let underlines2 = sortedWord.map((item) => item = "_ ");
     console.log(sortedWord)
     let i;
-    //let underlines2 = sortedWord.map((item) => item = "_ ");
 
-    let errorsNumber = 0;
+    //let rightsNumber = 0;
+
     function letterAttempt(index) {
-
-
         if (sortedWord.includes(alphabet[index]) === true) {
-            for (i = 0; i < sortedWord.length; i++) {
-                if (alphabet[index] === sortedWord[i]) {
-                    sethiddenWord(hiddenWord[i]=alphabet[index])
-                }
-            }
-            
+            sethiddenWord(sortedWord.map((item) => (item === alphabet[index]) ? alphabet[index] : "_ "))
+
         } else {
-            alert("errou")
+            seterrorsNumber(errorsNumber + 1)
         }
-
-        //sethiddenWordatt(...hiddenWordatt, underlines2)
-        //alert(`clicou em ${alphabet[index]}`)
-        //console.log(hiddenWordatt)
+ 
     }
+    let j;
 
-
-    //console.log(hiddenWord)
+    function attemptSuccess(){
+        
+        let filtered = sortedWord.filter((u,index)=>(u !== attempt[index]))
+        if (filtered.length === 0){
+            setAttemptSuccessfull(true)
+        }else{
+            attemptSuccessfull(false)
+        }
+    }
 
 
     return (
         <>
             <div className="content">
                 <div className="hangman">
-                    <img src={images[errorsNumber]} />
+                    {(attemptSuccessfull)? (<p>Parabéns! A palavra certa era {sortedWord}</p>):(<img data-identifier="game-image" src={images[errorsNumber]} />)}
                 </div>
                 <div className="theword">
-                    <button onClick={(sortedWord.length === 0) ? wordDraft : null} className="pick-word">Escolher Palavra</button>
-                    <div className="hidden-word">{hiddenWord}</div>
+                    <button data-identifier="choose-word" onClick={(sortedWord.length === 0) ? wordDraft : null} className="pick-word">Escolher Palavra</button>
+                    {(errorsNumber < 6)?  (<div className="hidden-word">{hiddenWord}</div>) : (<div className="hidden-word-red">{sortedWord}</div>)}
                 </div>
             </div>
             <div className="keyboard">
                 <div className={(sortedWord.length === 0) ? "the-letters-inactive" : "the-letters-active"}>
-                    {alphabet.map((a, index) => <button key={index} onClick={(sortedWord.length === 0) ? null : () => letterAttempt(index)}>{a}</button>)}
+                    {alphabet.map((a, index) => <button data-identifier="letter" key={index} onClick={(sortedWord.length === 0) ? null : () => letterAttempt(index)}>{a}</button>)}
                 </div>
                 <div className="the-guess">
-                    <span>Já sei a palavra!  <input /> </span>
-                    <button>Chutar</button>
+                    <span>Já sei a palavra!  <input data-identifier="type-guess" onChange = {e => setAttempt(e.target.value)}/> </span>
+                    <button data-identifier="guess-button" onClick ={(sortedWord.length === 0) ? null : attemptSuccess}>Chutar</button>
                 </div>
             </div>
         </>
