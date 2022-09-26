@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500&display=swap');
+
+.root {
+    font-family: 'Barlow', sans-serif;
+}
+
+.content {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 0.5% 17%;
+}
+
+.hangman img {
+    width: 320px;
+}
+
+.theword {
+    padding-top: 3%;
+    margin-right: 10%;
+
+}
+
+.theword button {
+    border-radius: 5px;
+    width: 150px;
+    height: 50px;
+    background-color: #8ACC5C;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 500;
+    transition: 0.3s;
+    margin-left: 65px;
+}
+
+.theword button:hover {
+    background-color: #99E166;
+}
+
+.hidden-word{
+    width: 300px;
+    margin-top: 75%;
+    font-size: 28px;
+    font-weight: 500;
+    margin-left: 20px;
+}
+
+.keyboard{
+    display: flex;
+    flex-direction: column;
+    align-items : center;
+    padding: 0.2% 17%;
+}
+
+.the-letters-inactive{
+    padding: 0% 12.5%;
+    margin-bottom: 8px;
+}
+
+
+
+.the-letters-active{
+    padding: 0% 12.5%;
+    margin-bottom: 8px;
+}
+
+.the-letters-inactive button{
+    height: 36px;
+    width: 40px;
+    margin-right: 6px;
+    margin-top: 6px;
+    transition: 0.4s;
+    background-color: #C2BDBA;
+    font-size: 15px;
+    color: #43403E;
+    border-radius: 5px;
+    border-color: #A9A29D;
+    
+}
+
+.the-letters-active button{
+    height: 36px;
+    width: 40px;
+    margin-right: 6px;
+    margin-top: 6px;
+    transition: 0.4s;
+    background-color: #FFD28C;
+    font-size: 15px;
+    color: #A86826;
+    border-radius: 5px;
+    border-color: #898255;
+    
+}
+
+.the-letters-active button:hover{
+    background-color: #F9D06C ;
+}
+
+.the-guess{
+    padding-right: 5.4%;
+}
+
+.the-guess span{
+    margin-right: 10px;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.the-guess input{
+    margin-left: 10px;
+    height: 28px;
+    width: 300px;
+    border-radius: 3px;
+}
+
+.the-guess button{
+    height: 36px;
+    width: 60px;
+    transition: 0.3s;
+    font-size: 14px;
+    font-weight: 400;
+    background-color: #3cbd70;
+    color: #ffffff;
+    border-radius: 5px;
+
+}
+
+.the-guess button:hover{
+    background-color: #00AC85 ;
+}
